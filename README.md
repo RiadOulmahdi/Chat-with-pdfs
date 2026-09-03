@@ -94,9 +94,11 @@ automotive text. Worth re-testing this any time the prompt changes, since a
 confident wrong answer is worse than an honest "I don't know."
 
 ## Screenshots
+<img width="1710" height="869" alt="app" src="https://github.com/user-attachments/assets/0b769bf4-e685-467b-8bab-9d06e77f0312" />
 <img width="524" height="855" alt="metrics" src="https://github.com/user-attachments/assets/be0b5ccf-07cd-4f10-a6f2-f1348e250e53" />
 <img width="1334" height="588" alt="chat" src="https://github.com/user-attachments/assets/946518e4-9b14-47ed-8954-94fc4f116885" />
-<img width="1710" height="869" alt="app" src="https://github.com/user-attachments/assets/0b769bf4-e685-467b-8bab-9d06e77f0312" />
+
+
 
 
 ## Setup
