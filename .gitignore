@@ -1,1 +1,13 @@
 __pycache__
+.venv
+.env
+.DS_Store
+
+data/pdfs
+data/chroma
+data/db
+data/metrics
+pdf_docs
+ingestion_state.db
+
+CLAUDE.md

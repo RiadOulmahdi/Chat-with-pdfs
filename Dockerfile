@@ -1,21 +1,26 @@
-FROM python:3.11-slim
+FROM python:3.11-slim AS builder
 
-RUN pip install poetry==1.6.1
-
-RUN poetry config virtualenvs.create false
+RUN pip install --no-cache-dir uv
 
 WORKDIR /code
 
-COPY ./pyproject.toml ./README.md ./poetry.lock* ./
+COPY pyproject.toml uv.lock ./
+RUN uv sync --frozen --no-install-project --no-dev
 
-COPY ./packages ./packages
+COPY app ./app
+COPY importer ./importer
+RUN uv sync --frozen --no-dev
 
-RUN poetry install  --no-interaction --no-ansi --no-root
+FROM python:3.11-slim
 
-COPY ./app ./app
+WORKDIR /code
 
-RUN poetry install --no-interaction --no-ansi
+COPY --from=builder /code/.venv /code/.venv
+COPY app ./app
+COPY importer ./importer
 
-EXPOSE 8080
+ENV PATH="/code/.venv/bin:$PATH"
 
-CMD exec uvicorn app.server:app --host 0.0.0.0 --port 8080
+EXPOSE 8501
+
+CMD ["streamlit", "run", "app/streamlit_app.py", "--server.address=0.0.0.0", "--server.port=8501"]
